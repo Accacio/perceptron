@@ -16,22 +16,18 @@ int main(int argc, char *argv[]) {
 
     Matrix r;
     NeuronInitialize(&neuron, 2);
-
-    double  newWeights[]= {1.9,6};
-    double  doubleInput[]= {1, 2};
+    neuron.lr=0.1;
+    double  newWeights[]= {19,2};
+    double  dataInputs[]= {1, 2};
+    double  dataOutput = -1;
 
     NeuronUpdateWeightsFromArray(&neuron,newWeights);
-    NeuronPredictFromArray(&neuron,doubleInput);
 
-    printf("u:\n");
-    printMatrix(neuron.u);
+    for (int i = 0; i < 10; i++) {
+        printf("Train\n");
+        NeuronTrain(&neuron, dataInputs, dataOutput);
+    }
 
-    printf("w:\n");
-    printMatrix(neuron.w);
-
-    printf("   T  \n");
-    printf("r=w u:\n");
-    printf("%f\n",neuron.y);
 
     NeuronDelete(&neuron);
     return 0;
