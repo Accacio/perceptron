@@ -4,13 +4,25 @@
 #include "matrix.h"
 
 #include "neuron.h"
-
-
-
-    }
+#include "csv.h"
 
 
 int main(int argc, char *argv[]) {
+    CSVData myCsvData;
+    myCsvData.ncol = CSVgetColumns(argv[1]);
+    myCsvData.nrow = 5;
+
+    CSVallocateData(&myCsvData,128);
+
+    int success = CSVread(argv[1],&myCsvData);
+    if (success!=0){
+        printf("Exiting\n");
+        exit(EXIT_FAILURE);
+    }
+
+    CSVprintData(myCsvData);
+
+    return 0;
 
     Neuron neuron;
 
@@ -28,7 +40,7 @@ int main(int argc, char *argv[]) {
         NeuronTrain(&neuron, dataInputs, dataOutput);
     }
 
-
+    /* TODO(accacio) free csvData */
     NeuronDelete(&neuron);
     exit(EXIT_SUCCESS);
 }
