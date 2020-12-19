@@ -16,5 +16,5 @@ debug-compile:
 	@ gcc main.c -g -o perceptron
 
 run:
-	@./perceptron
+	@./perceptron tests/data.csv
 # end
