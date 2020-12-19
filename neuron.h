@@ -12,8 +12,8 @@ typedef struct {
 } Neuron ;
 
 void NeuronInitialize(Neuron * neuron, int nInputs){
-    initializeMatrix(&neuron->w, nInputs, 1);
-    initializeMatrix(&neuron->u, nInputs, 1);
+    MatrixInitialize(&neuron->w, nInputs, 1);
+    MatrixInitialize(&neuron->u, nInputs, 1);
     neuron->b = 0;
     neuron->lr = 0.1;
 }
@@ -32,7 +32,7 @@ double NeuronActivation(double in) {
 
 /* double NeuronPredict(Neuron * neuron){ */
 /*     Matrix r; */
-/*     initializeMatrix(&r, neuron->w.ncol, neuron->u.ncol); */
+/*     MatrixInitialize(&r, neuron->w.ncol, neuron->u.ncol); */
 /*     MatrixMultiTransposeTimesNormal(neuron->w, neuron->u, &r); */
 /*     neuron->y=NeuronActivation(**r.data + neuron->b); */
 /*     MatrixDelete(&r); */
@@ -41,7 +41,7 @@ double NeuronActivation(double in) {
 double NeuronPredict(Neuron * neuron, Matrix input){
     Matrix r;
     neuron->u = input;
-    initializeMatrix(&r, neuron->w.ncol, neuron->u.ncol);
+    MatrixInitialize(&r, neuron->w.ncol, neuron->u.ncol);
     MatrixMultiTransposeTimesNormal(neuron->w, neuron->u, &r);
     neuron->y=NeuronActivation(**r.data + neuron->b);
     MatrixDelete(&r);
@@ -52,7 +52,7 @@ double NeuronPredictFromArray(Neuron * neuron, double * input){
     Matrix r;
     MatrixCopyFromArray(&(neuron->u), input);
     /* neuron->u = input; */
-    initializeMatrix(&r, neuron->w.ncol, neuron->u.ncol);
+    MatrixInitialize(&r, neuron->w.ncol, neuron->u.ncol);
     MatrixMultiTransposeTimesNormal(neuron->w, neuron->u, &r);
     neuron->y=NeuronActivation(**r.data + neuron->b);
     MatrixDelete(&r);
