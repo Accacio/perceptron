@@ -38,6 +38,11 @@ double NeuronActivation(double in) {
 /*     MatrixDelete(&r); */
 /*     return neuron->y; */
 /* } */
+
+
+#if defined __c_plus_plus__
+extern "C"
+#endif
 double NeuronPredict(Neuron * neuron, Matrix input){
     Matrix r;
     neuron->u = input;

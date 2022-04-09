@@ -93,6 +93,10 @@ int CSVread(char * filename,CSVData * csvData){
     return 0;
 }
 /* TODO(accacio) should return value */
+
+#if defined __c_plus_plus__
+extern "C"
+#endif
 void CSVallocateData(CSVData * data,unsigned int nchar){
     data->data = (char***) malloc(data->nrow*sizeof(char**));
     for (int i = 0; i < data->nrow; i++) {
