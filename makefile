@@ -13,7 +13,7 @@ compile:
 	@ gcc main.c -o perceptron
 
 debug-compile:
-	@ gcc main.c -Wall -g -o perceptron -pg --coverage
+	@ gcc main.c -Wall -g -o perceptron
 
 run:
 	@./perceptron tests/data.csv
