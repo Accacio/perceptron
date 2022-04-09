@@ -4,7 +4,7 @@
 # @file
 # @version 0.1
 
-all: debug run
+all: debug
 
 debug: debug-compile
 release: compile
