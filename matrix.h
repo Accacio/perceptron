@@ -10,9 +10,9 @@ typedef struct {
 } Matrix;
 
 void MatrixInitialize(Matrix * m, int nrow, int ncol){
-    double**data = malloc(nrow*sizeof(double*));
+    double**data = (double **) malloc(nrow*sizeof(double*));
     for (int i = 0; i < nrow; i++) {
-        data[i] = calloc(ncol, sizeof(double)); //contiguos
+        data[i] = (double *)calloc(ncol, sizeof(double)); //contiguos
     }
     m->ncol = ncol;
     m->nrow = nrow;
